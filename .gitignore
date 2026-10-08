@@ -1,0 +1,30 @@
+# LaTeX build files (created every time you compile)
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+*.nav
+*.snm
+*.vrb
+*.xdv
+
+# The PDF is built by GitHub Actions and published to the "build" branch.
+# Remove this line if you want a copy of cv.pdf in the repository itself.
+cv.pdf
+
+# Editors and operating systems
+.vscode/
+.vs/
+.idea/
+.DS_Store
+Thumbs.db
+*~

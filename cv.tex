@@ -9,7 +9,7 @@
 %	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 %	copies of the Software, and to permit persons to whom the Software is
 %	furnished to do so, subject to the following conditions:
-%	
+%
 %	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 %	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 %	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -17,7 +17,7 @@
 %	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 %	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 %	THE SOFTWARE.
-%	
+%
 %
 %-----------------------------------------------------------------------------------------------------------------------------------------------%
 
@@ -26,88 +26,47 @@
 %----------------------------------------------------------------------------------------
 
 % article class because we want to fully customize the page and not use a cv template
-\documentclass[a4paper,12pt]{article}
-
-%----------------------------------------------------------------------------------------
-%	FONT
-%----------------------------------------------------------------------------------------
-
-% % fontspec allows you to use TTF/OTF fonts directly
-% \usepackage{fontspec}
-% \defaultfontfeatures{Ligatures=TeX}
-
-% % modified for ShareLaTeX use
-% \setmainfont[
-% SmallCapsFont = Fontin-SmallCaps.otf,
-% BoldFont = Fontin-Bold.otf,
-% ItalicFont = Fontin-Italic.otf
-% ]
-% {Fontin.otf}
+\documentclass[a4paper,11pt]{article}
 
 %----------------------------------------------------------------------------------------
 %	PACKAGES
 %----------------------------------------------------------------------------------------
 \usepackage{url}
-\usepackage{parskip} 	
-%other packages for formatting
+\usepackage{parskip}
 \RequirePackage{color}
 \RequirePackage{graphicx}
 \usepackage[usenames,dvipsnames]{xcolor}
 \usepackage[scale=0.9]{geometry}
 
-
-%tabularx environment
+% tabularx environment, plus a centred version of the 'X' column type
 \usepackage{tabularx}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
 
-%for lists within experience section
+% lists within the project and awards sections
 \usepackage{enumitem}
+\newlist{bullets}{itemize}{1}
+\setlist[bullets]{nosep, leftmargin=1.2em, label=\textbullet, after=\vspace{5pt}}
 
-% centered version of 'X' col. type
-\newcolumntype{C}{>{\centering\arraybackslash}X} 
-
-%to prevent spillover of tabular into next pages
-\usepackage{supertabular}
-\usepackage{tabularx}
-\newlength{\fullcollw}
-\setlength{\fullcollw}{0.47\textwidth}
-
-%custom \section
-\usepackage{titlesec}				
-\usepackage{multicol}
-\usepackage{multirow}
-
-%CV Sections inspired by: 
-%http://stefano.italians.nl/archives/26
+% custom \section, inspired by http://stefano.italians.nl/archives/26
+\usepackage{titlesec}
 \titleformat{\section}{\Large\scshape\raggedright}{}{0em}{}[\titlerule]
-\titlespacing{\section}{0pt}{10pt}{10pt}
+\titlespacing{\section}{0pt}{8pt}{6pt}
 
-%for publications
-\usepackage[style=authoryear,sorting=ynt, maxbibnames=2]{biblatex}
-
-%Setup hyperref package, and colours for links
+% links
 \usepackage[unicode, draft=false]{hyperref}
 \definecolor{linkcolour}{rgb}{0,0.2,0.6}
 \hypersetup{colorlinks,breaklinks,urlcolor=linkcolour,linkcolor=linkcolour}
-\addbibresource{citations.bib}
-\setlength\bibitemsep{1em}
 
-%for social icons
+% social icons
 \usepackage{fontawesome5}
 
-%debug page outer frames
-%\usepackage{showframe}
+% project heading: name and tagline on the left, links on the right
+\newcommand{\project}[3]{\noindent\textbf{#1} #2\hfill #3\par}
 
+% red [note] for details still to fill in; there should be none left before you share the CV
+\newcommand{\fillin}[1]{\textcolor{red}{[#1]}}
 
-% job listing environments
-\newenvironment{jobshort}[2]
-    {
-    \begin{tabularx}{\linewidth}{@{}l X r@{}}
-    \textbf{#1} & \hfill &  #2 \\[3.75pt]
-    \end{tabularx}
-    }
-    {
-    }
-
+% job listing environment, for when you add an Experience section
 \newenvironment{joblong}[2]
     {
     \begin{tabularx}{\linewidth}{@{}l X r@{}}
@@ -118,10 +77,8 @@
     }
     {
     \end{itemize}
-    \end{minipage}    
+    \end{minipage}
     }
-
-
 
 %----------------------------------------------------------------------------------------
 %	BEGIN DOCUMENT
@@ -129,131 +86,84 @@
 \begin{document}
 
 % non-numbered pages
-\pagestyle{empty} 
+\pagestyle{empty}
 
 %----------------------------------------------------------------------------------------
 %	TITLE
 %----------------------------------------------------------------------------------------
-
-% \begin{tabularx}{\linewidth}{ @{}X X@{} }
-% \huge{Your Name}\vspace{2pt} & \hfill \emoji{incoming-envelope} email@email.com \\
-% \raisebox{-0.05\height}\faGithub\ username \ | \
-% \raisebox{-0.00\height}\faLinkedin\ username \ | \ \raisebox{-0.05\height}\faGlobe \ mysite.com  & \hfill \emoji{calling} number
-% \end{tabularx}
-
 \begin{tabularx}{\linewidth}{@{} C @{}}
 \Huge{Tudor Bodea} \\[7.5pt]
-\href{https://github.com/Tudor810}{\raisebox{-0.05\height}\faGithub\ Tudor810} \ $|$ \ 
-\href{https://www.linkedin.com/in/tudor-bodea-32ab5030b/}{\raisebox{-0.05\height}\faLinkedin\ Tudor Bodea} \ $|$ \ 
-\href{mailto:tudorbodea915@gmail.com}{\raisebox{-0.05\height}\faEnvelope \ tudorbodea915@gmail.com} \ $|$ \ 
-\href{tel:+40720450578}{\raisebox{-0.05\height}\faMobile \ +40720450578} \\
+\href{https://github.com/Tudor810}{\raisebox{-0.05\height}{\faGithub}\ Tudor810} \ $|$ \
+\href{https://www.linkedin.com/in/tudor-bodea-32ab5030b/}{\raisebox{-0.05\height}{\faLinkedin}\ Tudor Bodea} \ $|$ \
+\href{mailto:tudorbodea915@gmail.com}{\raisebox{-0.05\height}{\faEnvelope}\ tudorbodea915@gmail.com} \ $|$ \
+\href{tel:+40720450578}{\raisebox{-0.05\height}{\faMobile}\ +40 720 450 578} \\[2pt]
+\raisebox{-0.05\height}{\faMapMarker}\ Cluj-Napoca, Romania \\
 \end{tabularx}
 
 %----------------------------------------------------------------------------------------
-% EXPERIENCE SECTIONS
+%	SUMMARY
 %----------------------------------------------------------------------------------------
-
-%Interests/ Keywords/ Summary
 \section{Summary}
-Versatile Full Stack Development student with hands-on experience in React.js, Express.js, and MongoDB. Built and deployed a fully functional web app with multiple API integrations. Passionate about learning new skills and open to contributing to projects across different areas of technology.
+Third-year Computer Science student at UTCN (9.8/10 average in both years). Launched Skillify, an AI learning platform that reached 24k sign-ups; placed 2nd at PoliHack with CORE-Speech, AR glasses that translate sign language; and wrote a C++ chess engine. Looking for a software engineering internship for summer 2027.
 
-%Projects   
-\section{Projects}
-
-\begin{tabularx}{\linewidth}{ @{}l r@{} }
-\textbf{Skillify Ai} & \href{https://github.com/Tudor810/Skillify}{GitHub Repo} \\[3.75pt]
-\multicolumn{2}{@{}X@{}}{
-\begin{itemize}[nosep, leftmargin=1em]
-\item Developed a full-stack website using React.js, Express.js, and MongoDB.
-\item Responsive learning page with multiple categories
-\item Implemented user authentication, payment integration, API calls, email sending.
-\item Deployed the app online and reached 24k users.
-\item \href{https://thatsmy.ai/learning/skillify-ai}{Got reviews from different websites}
-\end{itemize}
-}  \\
-\end{tabularx}
-
-\begin{tabularx}{\linewidth}{ @{}l r@{} }
-\textbf{Mentis} & \href{https://github.com/Tudor810/MentisFrontend}{Frontend Repo} \\ 
-& \href{https://github.com/Tudor810/MentisBackend}{Backend Repo} \\
-          
-\multicolumn{2}{@{}X@{}}{
-\begin{itemize}[nosep, leftmargin=1em]
-\item Built a responsive dashboard for finding out the perfect therapist 
-\item Used React.js, Express.js and MongoDB
-\item Made calls to the OpenAi API 
-\item Added cookies to save the login credentials
-\end{itemize}
-}  \\
-\end{tabularx}
-
- \begin{tabularx}{\linewidth}{ @{}l r@{} }
- \textbf{8 Bit Microcontroller} & \href{https://github.com/Tudor810/8-bit-Microcontroller}{GitHub Repo} \\[3.75pt]
-
- \multicolumn{2}{@{}X@{}}{
- \begin{itemize}[nosep, leftmargin=1em]
- \item Implemented a fully functional 8 bit microcontroller
- \item Used VHDL and a FPGA 
- \item Stack for returning from function calls
- \item Contains Ports for I/O operations and an Interrupt System
- \end{itemize}
- }  \\
- \end{tabularx}
 %----------------------------------------------------------------------------------------
 %	EDUCATION
 %----------------------------------------------------------------------------------------
 \section{Education}
-\begin{tabularx}{\linewidth}{@{}l X@{}}	
-2024 - present & Undergraduate Student (Computer Science) at \textbf{UTCN} \hfill \normalsize  \\
-
-2020 - 2024 & Baccalaureate diploma at \textbf{Liceul de Informatică "Tiberiu Popoviciu"} \hfill (9.7/10) \\ 
-
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+2024 -- 2028 & \textbf{Technical University of Cluj-Napoca (UTCN)} -- Computer Science, Bachelor's degree \\
+ & Average 9.8/10 in Year 1 and 9.81/10 in Year 2; 10/10 in Data Structures and Algorithms, Fundamental Algorithms, Operating Systems, Computer Architecture, Databases, OOP \\[4pt]
+2020 -- 2024 & \textbf{Liceul de Informatică ``Tiberiu Popoviciu''}, Cluj-Napoca \hfill Baccalaureate 9.7/10 \\
 \end{tabularx}
 
-\section*{Grades}
-\begin{tabular}{l p{11cm}}
-    \textbf{First Year} &      9.8 \\
-    \textbf{Computer Programming} &      10 \\
-    \textbf{Logic Design} &      10 \\
-    \textbf{Data Structures and Algorithms} &       10\\
-    \textbf{Digital System Design} &       10 \\
+%----------------------------------------------------------------------------------------
+%	PROJECTS
+%----------------------------------------------------------------------------------------
+\section{Projects}
 
-\end{tabular}
+\project{Skillify AI}{-- AI learning platform}{\href{https://github.com/Tudor810/Skillify}{GitHub}}
+\begin{bullets}
+\item Built and deployed a full-stack learning platform (React, Node.js/Express, MongoDB) with an AI tutor on the OpenAI API that explains topics, quizzes users and adapts to their progress; reached 24k sign-ups.
+\item Implemented a freemium model with Stripe Checkout subscriptions, Google sign-in, RS256-signed JWT authentication and transactional email (Nodemailer).
+\item Added document, image (OCR with Tesseract.js) and YouTube summarizers that extract the text and pass it to the LLM.
+\end{bullets}
+
+\project{CORE-Speech}{-- \textbf{2nd place, PoliHack 2026}}{\href{https://github.com/Tudor810/CORE-Speech}{GitHub}}
+\begin{bullets}
+\item AR-glasses system that lets Deaf and hearing people talk in real time: sign language to speech, and speech to captions on the glasses.
+\item Handled system integration: connected sign recognition (MediaPipe, PyTorch LSTM), a local LLM (Ollama), voice cloning (OpenVoice, MeloTTS) and speech-to-text (Vosk) into one real-time pipeline.
+\item FastAPI edge server streaming audio over WebSockets to the ESP32-S2 firmware on the glasses (I2S microphone, display).
+\end{bullets}
+
+\project{Chess Engine}{-- C++, UCI protocol}{\href{https://github.com/Tudor810/ChessEngine}{GitHub}}
+\begin{bullets}
+\item Bitboard move generation (magic bitboards, Zobrist hashing), verified with the standard perft tests.
+\item Negamax alpha-beta search with iterative deepening, quiescence search, null-move pruning, MVV-LVA move ordering and a transposition table.
+\item Tapered PeSTO evaluation and time management; scores around 2000 Elo CCRL.
+\end{bullets}
+
 %----------------------------------------------------------------------------------------
-%	PUBLICATIONS
+%	AWARDS
 %----------------------------------------------------------------------------------------
-%\section{Publications}
-%\begin{refsection}[citations.bib]
-%\nocite{*}
-%\printbibliography[heading=none]
-%\end{refsection}
+\section{Awards and Competitions}
+\begin{bullets}
+\item \textbf{2nd place}, PoliHack 2026 -- CORE-Speech
+\item \textbf{1st place}, Quantum Speed -- World Quantum Day (April 2023)
+\item Also competed in: Cloudflight Coding Contest, AtCoder
+\end{bullets}
 
 %----------------------------------------------------------------------------------------
 %	SKILLS
 %----------------------------------------------------------------------------------------
-\section*{Personal skills and competences}
-\begin{tabular}{l p{11cm}}
-\textbf{Mother tongue} & \textbf{Romanian} \\
-\textbf{Foreign languages} & \textbf{English:} Upper-Intermediate (B2) \\
-                           & \textbf{German:} Beginner (A1) \\
-\textbf{Technical skills and competences} & 
-- Full-stack development: React.js, Express.js, Node.js, MongoDB \newline
-- Programming Languages: C, C++, JavaScript , Java, Python, C\#, \newline
-- Mathematics: Real and complex calculus, differential equations, statistics and probability \newline 
-- Database Management Systems: Oracle Database \newline 
-- IDEs: Microsoft Visual Studio 2022, Visual Studio Code, IntelliJ IDEA, pyCharm \newline 
-- Office suites: Microsoft Office 2010 \newline
-- Graphics and video editing: Adobe Photoshop, Adobe Premiere Pro \newline
-- Computer science domains: Software engineering, databases, basic understanding of quantum computing \newline
-\newline\\
-\textbf{Accomplishments} &  - First place in Quantum Speed | WorldQuantumDay in April 2023 \newline
-- Participations in PoliHack, Atcoder (880 elo), Cloudflight Coding Contest, Bosch Future Mobility Challange\\
-\textbf{Hobbies} & Science, sports(climbing, cycling, hiking), reading, chess, learning, philosophy
-
-\end{tabular}
-
-
-\vfill
-\center{\footnotesize Last updated: \today}
+\section{Skills}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+\textbf{Programming} & C, C++, Java, Python, JavaScript, C\# \\
+\textbf{Web and backend} & React, Node.js, Express, FastAPI, REST, WebSockets, Stripe, OAuth, JWT \\
+\textbf{AI and ML} & PyTorch, OpenCV, MediaPipe, OpenAI API, Ollama \\
+\textbf{Databases} & MongoDB, Oracle Database (SQL) \\
+\textbf{Systems and hardware} & Linux, Git, ESP32, VHDL, FPGA \\
+\textbf{Languages} & Romanian (native), English (B2), German (A1) \\
+\textbf{Interests} & Chess, climbing, cycling, hiking, reading, philosophy \\
+\end{tabularx}
 
 \end{document}
